@@ -32,7 +32,10 @@ export default class extends Component {
     { category } = this.state
     return <Fragment>
       <Header/>
-        <Exercises exercises={exercises}/>
+        <Exercises
+           category={category}
+           exercises={exercises}
+           />
       <Footer
         category={category}
         onSelect={this.handleCategorySelected} 

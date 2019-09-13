@@ -10,11 +10,13 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
   }
 
-export default ({ exercises }) =>
+export default ({ exercises, category }) =>
     <Grid container item={true}>
         <Grid item sm >
             <Paper style={styles.Paper}>
                 {exercises.map(([group, exercises]) =>
+                    !category || category === group
+                    ? 
                     <Fragment>
                         <Typography
                             variant="subtitle1"
@@ -30,6 +32,7 @@ export default ({ exercises }) =>
                             )}
                         </List>
                     </Fragment>
+                    : null
                 )}
             </Paper>
         </Grid>
