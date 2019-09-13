@@ -10,7 +10,14 @@ function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
   }
 
-export default ({ exercises, category }) =>
+export default ({ exercises,
+                  category,
+                  onSelect, exercise: {
+                      id,
+                     title='Welcome!', 
+                     description='Please select an exercise from de list of the left.'
+                    }
+                }) =>
     <Grid container item={true}>
         <Grid item sm >
             <Paper style={styles.Paper}>
@@ -25,9 +32,12 @@ export default ({ exercises, category }) =>
                             {group}
                         </Typography>
                         <List component="ul" aria-label="secondary mailbox folders">
-                            {exercises.map(exercise => 
+                            {exercises.map(({id, title}) => 
                                 <ListItem button>
-                                    <ListItemText primary={exercise.title} />
+                                    <ListItemText 
+                                        primary={title}
+                                        onClick={() => onSelect(id)}
+                                         />
                                 </ListItem>
                             )}
                         </List>
@@ -42,14 +52,14 @@ export default ({ exercises, category }) =>
                 <Typography
                     variant="h5"
                 >
-                    Welcome !
+                    {title}
                 </Typography>
 
                 <Typography
                     variant="subtitle1"
                     style={{marginTop: 20}}
                 >
-                    Please select an exercise from de list of the left.
+                    {description}
                 </Typography>
         </Paper>
         </Grid>
