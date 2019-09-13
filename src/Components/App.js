@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import {Header, Footer} from './Layout'
 import Exercises from './Exercises'
 import {muscles, exercises} from  '../store'
+import Create from '../Components/Dialogs/Create'
 
 export default class extends Component {
   state = {
@@ -39,6 +40,7 @@ export default class extends Component {
     { category, exercise } = this.state
     return <Fragment>
       <Header/>
+        <Create/>
         <Exercises
            exercise={exercise}
            category={category}

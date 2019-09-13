@@ -6,9 +6,9 @@ const styles = {
     Paper: { padding: 20, marginTop: 10, marginBottom: 10 , height: 500, overflowY: 'auto'}
 }
 
-function ListItemLink(props) {
+/*function ListItemLink(props) {
     return <ListItem button component="a" {...props} />;
-  }
+  }*/
 
 export default ({ exercises,
                   category,
@@ -24,7 +24,7 @@ export default ({ exercises,
                 {exercises.map(([group, exercises]) =>
                     !category || category === group
                     ? 
-                    <Fragment>
+                    <Fragment key={group}>
                         <Typography
                             variant="subtitle1"
                             style={{ textTransform: 'capitalize' }}
@@ -33,11 +33,13 @@ export default ({ exercises,
                         </Typography>
                         <List component="ul" aria-label="secondary mailbox folders">
                             {exercises.map(({id, title}) => 
-                                <ListItem button>
+                                <ListItem
+                                key={id} 
+                                button
+                                onClick={() => onSelect(id)}
+                                >
                                     <ListItemText 
-                                        primary={title}
-                                        onClick={() => onSelect(id)}
-                                         />
+                                        primary={title} />
                                 </ListItem>
                             )}
                         </List>
